@@ -48,8 +48,8 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Projects Grid - Espacement réduit et taille plus petite */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {data.map((project, index) => (
             <motion.div
               key={index}
@@ -57,93 +57,97 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group"
+              className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg border border-white/50 overflow-hidden flex flex-col"
+              style={{ cursor: 'default' }} // Empêche le curseur pointer
             >
-              <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 group-hover:border-white/80 overflow-hidden h-full flex flex-col">
-                {/* Project Image */}
-                <div className="relative overflow-hidden">
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-green-400 text-white text-sm px-3 py-1 rounded-full z-10 shadow-lg">
-                    {project.year}
-                  </div>
+              {/* Project Image avec hover uniquement ici */}
+              <div className="relative overflow-hidden">
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-500 to-green-400 text-white text-xs px-2 py-1 rounded-full z-10 shadow-md">
+                  {project.year}
+                </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="cursor-pointer"
+                >
                   <img
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-40 object-cover"
                     src={project.image}
                     alt={project.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              </div>
+
+              {/* Project Content - Pas d'effet hover ici */}
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-3 text-sm leading-relaxed flex-grow">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="mb-4">
+                  <h4 className="text-xs font-semibold text-gray-700 mb-2">
+                    Technologies Utilisées
+                  </h4>
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-2 py-1 bg-white/80 text-gray-700 text-xs rounded-full border border-white/50"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Project Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed flex-grow">
-                    {project.description}
-                  </p>
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.frontend && (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.frontend}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-white bg-gradient-to-r from-blue-500 to-green-400 px-3 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center min-w-0"
+                    >
+                      <i className="fa-brands fa-github text-xs"></i>
+                      <span className="truncate">Frontend</span>
+                    </motion.a>
+                  )}
 
-                  {/* Technologies */}
-                  <div className="mb-5">
-                    <h4 className="text-sm font-semibold text-gray-700 mb-2">
-                      Technologies Utilisées
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-white/80 backdrop-blur-sm text-gray-700 text-xs rounded-full border border-white/50 shadow-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  {project.backend && (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.backend}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-white bg-gradient-to-r from-blue-500 to-green-400 px-3 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center min-w-0"
+                    >
+                      <i className="fa-brands fa-github text-xs"></i>
+                      <span className="truncate">Backend</span>
+                    </motion.a>
+                  )}
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap gap-3 mt-auto">
-                    {project.frontend && (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.frontend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-white bg-gradient-to-r from-blue-500 to-green-400 px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center"
-                      >
-                        <i className="fa-brands fa-github"></i>
-                        Frontend
-                      </motion.a>
-                    )}
-
-                    {project.backend && (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.backend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-white bg-gradient-to-r from-blue-500 to-green-400 px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center"
-                      >
-                        <i className="fa-brands fa-github"></i>
-                        Backend
-                      </motion.a>
-                    )}
-
-                    {project.github && (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-white bg-gradient-to-r from-blue-500 to-green-400 px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center"
-                      >
-                        <i className="fa-brands fa-github"></i>
-                        Code Source
-                      </motion.a>
-                    )}
-                  </div>
+                  {project.github && (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-white bg-gradient-to-r from-blue-500 to-green-400 px-3 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex-1 justify-center min-w-0"
+                    >
+                      <i className="fa-brands fa-github text-xs"></i>
+                      <span className="truncate">Code Source</span>
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -156,7 +160,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12"
         >
         </motion.div>
       </div>

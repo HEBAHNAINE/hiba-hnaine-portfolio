@@ -31,18 +31,21 @@ export const ContactMe = () => {
   const socials = [
     { 
       icon: "fa-brands fa-github", 
-      url: "HEBAHNAINEhttps://github.com/",
-      color: "hover:bg-gray-800"
+      url: "https://github.com/HEBAHNAINE",
+      color: "hover:bg-gray-800",
+      name: "GitHub"
     },
     { 
       icon: "fa-brands fa-linkedin", 
       url: "https://www.linkedin.com/in/hiba-hnaine-3a1a63350/",
-      color: "hover:bg-blue-600"
+      color: "hover:bg-blue-600",
+      name: "LinkedIn"
     },
     { 
       icon: "fa-brands fa-instagram", 
       url: "https://www.instagram.com/hebahnai_/",
-      color: "hover:bg-pink-600"
+      color: "hover:bg-pink-600",
+      name: "Instagram"
     },
   ];
 
@@ -109,36 +112,9 @@ export const ContactMe = () => {
                 </motion.div>
               ))}
             </div>
-
-            {/* Social Media Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Réseaux sociaux</h3>
-              <div className="flex justify-center space-x-4">
-                {socials.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`bg-gray-100 ${social.color} text-gray-700 p-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:text-white`}
-                  >
-                    <i className={`${social.icon} text-2xl`}></i>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Right Column - CTA Card */}
+          {/* Right Column - Social Media Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -154,28 +130,52 @@ export const ContactMe = () => {
               
               <div className="relative z-10 text-center">
                 <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fa-solid fa-paper-plane text-3xl text-white"></i>
+                  <i className="fa-solid fa-share-nodes text-3xl text-white"></i>
                 </div>
                 
-                <h3 className="text-3xl font-bold mb-4">Prête à commencer ?</h3>
+                <h3 className="text-3xl font-bold mb-4">Réseaux sociaux</h3>
                 <p className="text-white/90 mb-8 text-lg leading-relaxed">
-                  Envoyez-moi un message et discutons de la manière dont nous pouvons travailler ensemble sur votre prochain projet.
+                  Retrouvez-moi sur mes réseaux pour suivre mon actualité et mes derniers projets.
                 </p>
                 
+                {/* Social Media Icons */}
+                <div className="flex justify-center space-x-6 mb-8">
+                  {socials.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.2, y: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`bg-white/20 ${social.color} text-white p-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl border border-white/30`}
+                    >
+                      <i className={`${social.icon} text-2xl`}></i>
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Social Media Names */}
+                <div className="flex justify-center space-x-8 text-white/80 text-sm">
+                  {socials.map((social, index) => (
+                    <span key={index} className="font-medium">
+                      {social.name}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Email CTA */}
                 <motion.a
                   href="mailto:hnainehiba@gmail.com"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 bg-white text-green-600 font-bold py-4 px-8 rounded-full hover:shadow-2xl transition-all duration-300 shadow-lg hover:bg-gray-50"
+                  className="inline-flex items-center gap-3 bg-white text-green-600 font-bold py-3 px-6 rounded-full hover:shadow-2xl transition-all duration-300 shadow-lg hover:bg-gray-50 mt-6"
                 >
-                  <i className="fa-solid fa-envelope-open-text"></i>
-                  Démarrer la conversation
+                  <i className="fa-solid fa-envelope"></i>
+                  Envoyer un email
                 </motion.a>
-                
-                <div className="mt-6 flex items-center justify-center gap-4 text-white/80">
-                  <i className="fa-solid fa-clock"></i>
-                  <span className="text-sm">Réponse sous 24h</span>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -189,32 +189,8 @@ export const ContactMe = () => {
           viewport={{ once: true }}
           className="mt-16"
         >
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-center md:text-left">
-                <h4 className="font-bold text-gray-900 text-lg">Vous avez une question spécifique ?</h4>
-                <p className="text-gray-600">Contactez-moi directement par téléphone ou email</p>
-              </div>
-              <div className="flex gap-4">
-                <motion.a
-                  href="tel:+212778246997"
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full transition-all duration-300 shadow-md"
-                >
-                  <i className="fa-solid fa-phone"></i>
-                  Appeler
-                </motion.a>
-                <motion.a
-                  href="mailto:hnainehiba@gmail.com"
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition-all duration-300 shadow-md"
-                >
-                  <i className="fa-solid fa-envelope"></i>
-                  Email
-                </motion.a>
-              </div>
-            </div>
-          </div>
+          
+        
         </motion.div>
       </div>
     </section>
