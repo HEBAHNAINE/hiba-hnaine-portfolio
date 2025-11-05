@@ -29,10 +29,13 @@ const About = () => {
           className="lg:w-1/2 space-y-8"
         >
           <p className="text-gray-700 text-xl leading-relaxed text-justify">
-            Je suis <span className="font-semibold text-blue-700">Hiba Hnaine</span>,
-            une développeuse passionnée par la création d'expériences web modernes,
-            intuitive et performantes. Mon objectif est de concevoir des interfaces
-            esthétiques et fonctionnelles qui offrent une réelle valeur ajoutée.
+            Je suis{" "}
+            <span className="font-semibold text-blue-700">Hiba Hnaine</span>,
+            développeuse passionnée par le web et les technologies modernes.
+            J'aime concevoir des solutions innovantes, esthétiques et
+            performantes qui allient créativité et sens du détail. Mon objectif
+            est de transformer des idées en expériences numériques fluides et
+            intuitives, centrées sur l'utilisateur.
           </p>
 
           <div className="space-y-5 pt-4">
