@@ -14,15 +14,15 @@ const Logo = () => {
         className="flex items-center gap-2 group"
         whileHover={{ scale: 1.05 }}
       >
-        {/* Simple Icon */}
-        <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-green-400 rounded-full"></div>
-        
+        {/* Cyberpunk Bar */}
+        <div className="w-2 h-8 bg-gradient-to-b from-[#FF0080] to-[#00FFFF] rounded-full shadow-[0_0_10px_#FF0080]"></div>
+
         {/* Text */}
         <div className="flex flex-col">
-          <span className="text-2xl font-black bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent tracking-tight">
+          <span className="text-2xl font-black bg-gradient-to-r from-[#FF0080] to-[#00FFFF] bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_12px_#FF0080]">
             HNAINE
           </span>
-          <span className="text-gray-600 text-xs font-medium tracking-widest -mt-1">
+          <span className="text-[#CCCCCC] text-xs font-medium tracking-widest -mt-1">
             HIBA
           </span>
         </div>
