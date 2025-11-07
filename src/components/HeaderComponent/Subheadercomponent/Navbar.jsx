@@ -32,7 +32,7 @@ const Navbar = () => {
       transition={{ duration: 0.6 }}
       className="w-full flex justify-between items-center px-6 md:px-12 py-4 
                  fixed top-0 left-0 z-50 
-                 bg-[#000000]/90 backdrop-blur-xl 
+                 bg-[#000000]/95 backdrop-blur-xl 
                  border-b border-[#1A1A1A]"
     >
 
@@ -118,7 +118,7 @@ const Navbar = () => {
         {isOpen && (
           <>
             <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -127,7 +127,7 @@ const Navbar = () => {
 
             <motion.div
               className="fixed top-0 right-0 h-full w-80 
-                         bg-[#0C0C0C] border-l border-[#1A1A1A] 
+                         bg-[#0A0A0A] border-l border-[#1A1A1A] 
                          shadow-2xl z-50 flex flex-col"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -135,7 +135,7 @@ const Navbar = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
               {/* Header */}
-              <div className="p-6 border-b border-[#1A1A1A] flex justify-between items-center">
+              <div className="p-6 border-b border-[#1A1A1A] flex justify-between items-center bg-[#0A0A0A]">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-[#FF0080] to-[#00FFFF] rounded-xl flex items-center justify-center">
                     <span className="text-black font-bold">H</span>
@@ -152,7 +152,7 @@ const Navbar = () => {
               </div>
 
               {/* Items */}
-              <div className="flex-1 p-6 space-y-2">
+              <div className="flex-1 p-6 space-y-2 bg-[#0A0A0A]">
                 {navitems.map((item, index) => (
                   <motion.div
                     key={index}
@@ -168,13 +168,35 @@ const Navbar = () => {
                       onClick={closeMenu}
                       className="flex items-center gap-4 w-full px-4 py-3 
                                 rounded-xl text-[#CCCCCC] hover:bg-[#1A1A1A] 
-                                hover:text-white transition-all"
+                                hover:text-white transition-all border border-transparent hover:border-[#FF0080]/30"
                     >
                       <i className={`fa-solid ${item.icon} text-sm`}></i>
                       {item.name}
                     </Link>
                   </motion.div>
                 ))}
+              </div>
+
+              {/* Social Icons in Mobile Menu */}
+              <div className="p-6 border-t border-[#1A1A1A] bg-[#0A0A0A]">
+                <div className="flex justify-center space-x-4">
+                  {socialLinks.map((s, i) => (
+                    <motion.a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.label}
+                      key={i}
+                      whileHover={{ scale: 1.1 }}
+                      className="w-10 h-10 bg-[#1A1A1A] text-[#CCCCCC] 
+                                 rounded-lg flex items-center justify-center 
+                                 hover:text-white hover:shadow-[0_0_8px_#FF0080] 
+                                 transition-all duration-300"
+                    >
+                      <i className={`${s.icon} text-base`}></i>
+                    </motion.a>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </>
